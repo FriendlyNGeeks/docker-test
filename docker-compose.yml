@@ -1,0 +1,20 @@
+version: "2"
+services:
+  peons:
+    image: localhost:5000/myapp:latest
+    container_name: test-express
+    build:
+      context: .
+      dockerfile: ./dockerfile
+    # volumes:
+    #   - ./server:/app
+    ports:
+      - "80:80"
+    # env_file:
+    #   - ./.env.production.local
+    privileged: true
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    restart: always
+    # command: bundle exec thin -d -p 80
+    network_mode: bridge
